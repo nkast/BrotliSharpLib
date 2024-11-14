@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace BrotliSharpLib {
-    public static partial class Brotli {
+namespace BrotliSharpLib
+{
+    public static partial class Brotli
+    {
 #if PROPER_DETECT
         [StructLayout(LayoutKind.Sequential)]
-        private struct SYSTEM_INFO {
+        private struct SYSTEM_INFO 
+        {
             public ushort wProcessorArchitecture;
             public ushort wReserved;
             public uint dwPageSize;
@@ -23,7 +26,8 @@ namespace BrotliSharpLib {
         private static extern void GetNativeSystemInfo(out SYSTEM_INFO info);
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-        private struct utsname {
+        private struct utsname 
+        {
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
             public string sysname;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
@@ -42,7 +46,8 @@ namespace BrotliSharpLib {
         private static extern int uname(out utsname buf);
 #endif
 
-        private enum Endianess {
+        private enum Endianess
+        {
             Little,
             Big,
             Unknown
@@ -51,7 +56,8 @@ namespace BrotliSharpLib {
         /// <summary>
         /// Detects the endianness of the current CPU
         /// </summary>
-        private static unsafe Endianess GetEndianess() {
+        private static unsafe Endianess GetEndianess()
+        {
             uint value = 0xaabbccdd;
             byte* b = (byte*)&value;
             if (b[0] == 0xdd)
@@ -64,17 +70,21 @@ namespace BrotliSharpLib {
         /// <summary>
         /// Determines if the current CPU supports unaligned reads
         /// </summary>
-        private static bool IsWhitelistedCPU() {
+        private static bool IsWhitelistedCPU()
+        {
 #if PROPER_DETECT
             // Detect the current CPU architecture to enable unaligned reads
-            switch (Environment.OSVersion.Platform) {
+            switch (Environment.OSVersion.Platform)
+            {
                 // Unix
                 case PlatformID.MacOSX:
                 case PlatformID.Unix:
                 case (PlatformID) 128:
                     utsname buf;
-                    if (uname(out buf) == 0) {
-                        switch (buf.machine) {
+                    if (uname(out buf) == 0)
+                    {
+                        switch (buf.machine
+                        {
                             case "i386":
                             case "i686":
                             case "x86_64":
@@ -89,7 +99,8 @@ namespace BrotliSharpLib {
                 case PlatformID.Win32NT:
                     SYSTEM_INFO info;
                     GetNativeSystemInfo(out info);
-                    switch (info.wProcessorArchitecture) {
+                    switch (info.wProcessorArchitecture)
+                    {
                         case 0: // Intel (x86)
                         case 5: // ARM
                         case 9: // AMD64 (x64)
