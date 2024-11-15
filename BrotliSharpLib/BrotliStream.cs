@@ -51,7 +51,7 @@ namespace BrotliSharpLib
 
                         _decoderState = Brotli.BrotliCreateDecoderState();
                         Brotli.BrotliDecoderStateInit(ref _decoderState);
-                        _buffer = new byte[BufferLength];
+                        _buffer = BufferPool.Current.Get(BufferLength);
                     }
                     break;
 
@@ -199,6 +199,8 @@ namespace BrotliSharpLib
                     case CompressionMode.Decompress:
                         {
                             Brotli.BrotliDecoderStateCleanup(ref _decoderState);
+                            BufferPool.Current.Return(_buffer);
+                            _buffer = null;
                         }
                         break;
 
