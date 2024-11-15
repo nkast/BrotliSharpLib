@@ -24,7 +24,9 @@ namespace BrotliSharpLib
 
             public static implicit operator size_t(UIntPtr s)
             {
-                return new size_t(s.ToPointer());
+                size_t result;
+                result.Value = s.ToPointer();
+                return result;
             }
 
             public static implicit operator ulong(size_t s)
@@ -74,47 +76,63 @@ namespace BrotliSharpLib
 
             public static explicit operator float(size_t s)
             {
-                return Is64Bit ? (ulong)s : (uint)s;
+                return (Is64Bit) ? (ulong)s 
+                                 : (uint)s;
             }
 
             public static explicit operator double(size_t s)
             {
-                return Is64Bit ? (ulong)s : (uint)s;
+                return (Is64Bit) ? (ulong)s 
+                                 : (uint)s;
             }
 
             public static implicit operator size_t(ushort i)
             {
-                return new size_t((void*)i);
+                size_t result;
+                result.Value = (void*)i;
+                return result;
             }
 
             public static implicit operator size_t(byte i)
             {
-                return new size_t((void*)i);
+                size_t result;
+                result.Value = (void*)i;
+                return result;
             }
 
             public static implicit operator size_t(int i)
             {
-                return new size_t((void*)i);
+                size_t result;
+                result.Value = (void*)i;
+                return result;
             }
 
             public static implicit operator size_t(uint i)
             {
-                return new size_t((void*)i);
+                size_t result;
+                result.Value = (void*)i;
+                return result;
             }
 
             public static implicit operator size_t(long i)
             {
-                return new size_t((void*)i);
+                size_t result;
+                result.Value = (void*)i;
+                return result;
             }
 
             public static implicit operator size_t(ulong i)
             {
-                return new size_t((void*)i);
+                size_t result;
+                result.Value = (void*)i;
+                return result;
             }
 
             public static explicit operator size_t(void* p)
             {
-                return new size_t(p);
+                size_t result;
+                result.Value = p;
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -122,7 +140,11 @@ namespace BrotliSharpLib
 #endif
             public static explicit operator size_t(double p)
             {
-                return new size_t(Is64Bit ? (void*)(ulong)p : (void*)(uint)p);
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)(ulong)p 
+                             : (void*)(uint)p;
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -130,7 +152,11 @@ namespace BrotliSharpLib
 #endif
             public static explicit operator size_t(float p)
             {
-                return new size_t(Is64Bit ? (void*)(ulong)p : (void*)(uint)p);
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)(ulong)p 
+                             : (void*)(uint)p;
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -138,29 +164,39 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator +(size_t a, size_t b)
             {
-                return Is64Bit
-                    ? new size_t((byte*)a + (ulong)b)
-                    : new size_t((byte*)a + b);
+                size_t result;
+                result.Value = (Is64Bit)
+                             ? (byte*)a + (ulong)b
+                             : (byte*)a + b;
+                return result;
             }
 
             public static size_t operator +(size_t a, int b)
             {
-                return new size_t((byte*)a + b);
+                size_t result;
+                result.Value = (byte*)a + b;
+                return result;
             }
 
             public static size_t operator +(size_t a, uint b)
             {
-                return new size_t((byte*)a + b);
+                size_t result;
+                result.Value = (byte*)a + b;
+                return result;
             }
 
             public static size_t operator +(size_t a, long b)
             {
-                return new size_t((byte*)a + b);
+                size_t result;
+                result.Value = (byte*)a + b;
+                return result;
             }
 
             public static size_t operator +(size_t a, ulong b)
             {
-                return new size_t((byte*)a + b);
+                size_t result;
+                result.Value = (byte*)a + b;
+                return result;
             }
 
             public static bool operator >(size_t a, size_t b)
@@ -188,29 +224,39 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator -(size_t a, size_t b)
             {
-                return Is64Bit
-                    ? new size_t((byte*)a - (ulong)b)
-                    : new size_t((byte*)a - b);
+                size_t result;
+                result.Value = (Is64Bit)
+                             ? (byte*)a - (ulong)b
+                             : (byte*)a - b;
+                return result;
             }
 
             public static size_t operator -(size_t a, int b)
             {
-                return new size_t((byte*)a.Value - b);
+                size_t result;
+                result.Value = (byte*)a.Value - b;
+                return result;
             }
 
             public static size_t operator -(size_t a, uint b)
             {
-                return new size_t((byte*)a.Value - b);
+                size_t result;
+                result.Value = (byte*)a.Value - b;
+                return result;
             }
 
             public static size_t operator -(size_t a, long b)
             {
-                return new size_t((byte*)a.Value - b);
+                size_t result;
+                result.Value = (byte*)a.Value - b;
+                return result;
             }
 
             public static size_t operator -(size_t a, ulong b)
             {
-                return new size_t((byte*)a.Value - b);
+                size_t result;
+                result.Value = (byte*)a.Value - b;
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -218,7 +264,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator /(size_t a, size_t b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a / (ulong)b) : (void*)((uint)a / (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a / (ulong)b) 
+                             : (void*)((uint)a / (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -226,7 +276,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator /(size_t a, int b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a / (uint)b) : (void*)((uint)a / (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a / (uint)b) 
+                             : (void*)((uint)a / (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -234,7 +288,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator /(size_t a, uint b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a / b) : (void*)((uint)a / b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a / b) 
+                             : (void*)((uint)a / b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -242,7 +300,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator /(size_t a, long b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a / (ulong)b) : (void*)((uint)a / (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a / (ulong)b) 
+                             : (void*)((uint)a / (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -250,7 +312,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator /(size_t a, ulong b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a / b) : (void*)((uint)a / (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a / b) 
+                             : (void*)((uint)a / (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -258,7 +324,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator *(size_t a, size_t b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a * (ulong)b) : (void*)((uint)a * (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a * (ulong)b) 
+                             : (void*)((uint)a * (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -266,7 +336,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator *(size_t a, int b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a * (ulong)b) : (void*)((uint)a * (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a * (ulong)b) 
+                             : (void*)((uint)a * (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -274,7 +348,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator *(size_t a, uint b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a * b) : (void*)((uint)a * b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a * b) 
+                             : (void*)((uint)a * b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -282,7 +360,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator *(size_t a, long b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a * (ulong)b) : (void*)((uint)a * (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a * (ulong)b) 
+                             : (void*)((uint)a * (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -290,7 +372,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator *(size_t a, ulong b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a * b) : (void*)((uint)a * (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a * b) 
+                             : (void*)((uint)a * (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -298,7 +384,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator %(size_t a, size_t b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a % (ulong)b) : (void*)((uint)a % (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a % (ulong)b) 
+                             : (void*)((uint)a % (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -306,7 +396,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator %(size_t a, int b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a % (ulong)b) : (void*)((uint)a % (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a % (ulong)b) 
+                             : (void*)((uint)a % (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -315,7 +409,11 @@ namespace BrotliSharpLib
 
             public static size_t operator %(size_t a, uint b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a % b) : (void*)((uint)a % b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a % b) 
+                             : (void*)((uint)a % b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -323,7 +421,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator %(size_t a, long b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a % (ulong)b) : (void*)((uint)a % (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a % (ulong)b) 
+                             : (void*)((uint)a % (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -331,7 +433,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator %(size_t a, ulong b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a % b) : (void*)((uint)a % (uint)b));
+                size_t result;
+                result.Value = (Is64Bit)
+                             ? (void*)((ulong)a % b) 
+                             : (void*)((uint)a % (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -339,17 +445,25 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator &(size_t a, size_t b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a & (ulong)b) : (void*)((uint)a & (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a & (ulong)b) 
+                             : (void*)((uint)a & (uint)b);
+                return result;
             }
 
             public static size_t operator &(size_t a, int b)
             {
-                return new size_t((void*)((uint)a & (uint)b));
+                size_t result;
+                result.Value = (void*)((uint)a & (uint)b);
+                return result;
             }
 
             public static size_t operator &(size_t a, uint b)
             {
-                return new size_t((void*)((uint)a & b));
+                size_t result;
+                result.Value = (void*)((uint)a & b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -357,7 +471,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator &(size_t a, long b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a & (uint)b) : (void*)((uint)a & (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a & (uint)b) 
+                             : (void*)((uint)a & (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -365,7 +483,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator &(size_t a, ulong b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a & b) : (void*)((uint)a & b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a & b) 
+                             : (void*)((uint)a & b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -373,7 +495,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator |(size_t a, size_t b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a | (ulong)b) : (void*)((uint)a | (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a | (ulong)b) 
+                             : (void*)((uint)a | (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -381,7 +507,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator |(size_t a, int b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a | (uint)b) : (void*)((uint)a | (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a | (uint)b) 
+                             : (void*)((uint)a | (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -389,7 +519,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator |(size_t a, uint b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a | b) : (void*)((uint)a | b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a | b) 
+                             : (void*)((uint)a | b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -397,7 +531,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator |(size_t a, long b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a | (uint)b) : (void*)((uint)a | (uint)b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a | (uint)b) 
+                             : (void*)((uint)a | (uint)b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -405,7 +543,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator |(size_t a, ulong b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a | b) : (void*)((uint)a | b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a | b) 
+                             : (void*)((uint)a | b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -413,7 +555,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator >>(size_t a, int b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a >> b) : (void*)((uint)a >> b));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)((ulong)a >> b) 
+                             : (void*)((uint)a >> b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -421,7 +567,11 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator <<(size_t a, int b)
             {
-                return new size_t(Is64Bit ? (void*)((ulong)a << b) : (void*)((uint)a << b));
+                size_t result;
+                result.Value = (Is64Bit)
+                             ? (void*)((ulong)a << b) 
+                             : (void*)((uint)a << b);
+                return result;
             }
 
 #if AGGRESSIVE_INLINING
@@ -429,12 +579,17 @@ namespace BrotliSharpLib
 #endif
             public static size_t operator ~(size_t a)
             {
-                return new size_t(Is64Bit ? (void*)(~(ulong)a) : (void*)(~(uint)a));
+                size_t result;
+                result.Value = (Is64Bit) 
+                             ? (void*)(~(ulong)a) 
+                             : (void*)(~(uint)a);
+                return result;
             }
 
             public override string ToString()
             {
-                return Is64Bit ? ((ulong)Value).ToString() : ((uint)Value).ToString();
+                return (Is64Bit) ? ((ulong)Value).ToString() 
+                                 : ((uint)Value).ToString();
             }
         }
     }
