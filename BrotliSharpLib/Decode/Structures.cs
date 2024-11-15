@@ -319,7 +319,7 @@ namespace BrotliSharpLib
             public uint repeat;
             public uint space;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)] public HuffmanCode[] table;
+            public HuffmanCode[] table;
             /* List of of symbol chains. */
             public ushort* symbol_lists
             {
@@ -351,9 +351,7 @@ namespace BrotliSharpLib
             public uint max_run_length_prefix;
             public uint code;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = BROTLI_HUFFMAN_MAX_SIZE_272)]
-            public HuffmanCode[]
-                context_map_table;
+            public HuffmanCode[] context_map_table;
 
             /* For InverseMoveToFrontTransform */
             public uint mtf_upper_bound;

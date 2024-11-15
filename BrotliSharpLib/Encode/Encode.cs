@@ -9,7 +9,8 @@ namespace BrotliSharpLib
         internal static unsafe BrotliEncoderState BrotliEncoderCreateInstance(brotli_alloc_func alloc_func,
             brotli_free_func free_func, void* opaque)
         {
-            BrotliEncoderState state = CreateStruct<BrotliEncoderState>();
+            BrotliEncoderState state = default(BrotliEncoderState);
+
             BrotliInitMemoryManager(
                 ref state.memory_manager_, alloc_func, free_func, opaque);
             BrotliEncoderInitState(ref state);

@@ -12,26 +12,6 @@ namespace BrotliSharpLib
 {
     public static partial class Brotli
     {
-        private static unsafe T CreateStruct<T>()
-        {
-#if NET40 || NET45
-            int sz = Marshal.SizeOf(typeof(T));
-#else
-            int sz = Marshal.SizeOf<T>();
-#endif
-
-            var hMem = Marshal.AllocHGlobal(sz);
-            memset(hMem.ToPointer(), 0, sz);
-
-#if NET40 || NET45
-            var s = Marshal.PtrToStructure(hMem, typeof(T));
-#else
-            T s = Marshal.PtrToStructure<T>(hMem);
-#endif
-            Marshal.FreeHGlobal(hMem);
-            return (T)s;
-        }
-
         private static unsafe void* DefaultAllocFunc(void* opaque, size_t size)
         {
             return Marshal.AllocHGlobal((int)size).ToPointer();
@@ -44,7 +24,10 @@ namespace BrotliSharpLib
 
         internal static BrotliDecoderState BrotliCreateDecoderState()
         {
-            return CreateStruct<BrotliDecoderState>();
+            BrotliDecoderState state = default(BrotliDecoderState);
+            state.table = new HuffmanCode[32];
+            state.context_map_table = new HuffmanCode[BROTLI_HUFFMAN_MAX_SIZE_272];
+            return state;
         }
 
 
