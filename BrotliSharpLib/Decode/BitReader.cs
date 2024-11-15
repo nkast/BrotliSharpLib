@@ -292,11 +292,10 @@ namespace BrotliSharpLib
 #if AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static unsafe uint BrotliGet16BitsUnmasked(
-            BrotliBitReader* br)
+        private static unsafe uint BrotliGet16BitsUnmasked(BrotliBitReader* br)
         {
             BrotliFillBitWindow(br, 16);
-            return BrotliGetBitsUnmasked(br);
+            return (uint)(br->val_ >> (int)br->bit_pos_);
         }
 
         /* Returns the specified number of bits from |br| without advancing bit pos. */
