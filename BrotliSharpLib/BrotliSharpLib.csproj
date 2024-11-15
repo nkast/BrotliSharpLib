@@ -29,9 +29,6 @@
 	<PropertyGroup Condition="'$(TargetFramework)'!='net40'">
 		<DefineConstants>$(DefineConstants);AGGRESSIVE_INLINING</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'!='net40' AND '$(TargetFramework)'!='net45'">
-		<DefineConstants>$(DefineConstants);SIZE_OF_T</DefineConstants>
-	</PropertyGroup>
 	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
 	  <PackageReference Include="System.Runtime.CompilerServices.Unsafe">

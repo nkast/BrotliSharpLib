@@ -14,17 +14,19 @@ namespace BrotliSharpLib
     {
         private static unsafe T CreateStruct<T>()
         {
-#if SIZE_OF_T
-            var sz = Marshal.SizeOf<T>();
+#if NET40 || NET45
+            int sz = Marshal.SizeOf(typeof(T));
 #else
-            var sz = Marshal.SizeOf(typeof(T));
+            int sz = Marshal.SizeOf<T>();
 #endif
+
             var hMem = Marshal.AllocHGlobal(sz);
             memset(hMem.ToPointer(), 0, sz);
-#if SIZE_OF_T
-            var s = Marshal.PtrToStructure<T>(hMem);
-#else
+
+#if NET40 || NET45
             var s = Marshal.PtrToStructure(hMem, typeof(T));
+#else
+            T s = Marshal.PtrToStructure<T>(hMem);
 #endif
             Marshal.FreeHGlobal(hMem);
             return (T)s;
