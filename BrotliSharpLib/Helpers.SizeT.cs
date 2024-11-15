@@ -166,36 +166,36 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit)
-                             ? (byte*)a + (ulong)b
-                             : (byte*)a + b;
+                             ? (byte*)a.Value + (ulong)b.Value
+                             : (byte*)a.Value + b;
                 return result;
             }
 
             public static size_t operator +(size_t a, int b)
             {
                 size_t result;
-                result.Value = (byte*)a + b;
+                result.Value = (byte*)a.Value + b;
                 return result;
             }
 
             public static size_t operator +(size_t a, uint b)
             {
                 size_t result;
-                result.Value = (byte*)a + b;
+                result.Value = (byte*)a.Value + b;
                 return result;
             }
 
             public static size_t operator +(size_t a, long b)
             {
                 size_t result;
-                result.Value = (byte*)a + b;
+                result.Value = (byte*)a.Value + b;
                 return result;
             }
 
             public static size_t operator +(size_t a, ulong b)
             {
                 size_t result;
-                result.Value = (byte*)a + b;
+                result.Value = (byte*)a.Value + b;
                 return result;
             }
 
@@ -226,8 +226,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit)
-                             ? (byte*)a - (ulong)b
-                             : (byte*)a - b;
+                             ? (byte*)a.Value - (ulong)b.Value
+                             : (byte*)a.Value - b;
                 return result;
             }
 
@@ -266,8 +266,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a / (ulong)b) 
-                             : (void*)((uint)a / (uint)b);
+                             ? (void*)((ulong)a.Value / (ulong)b) 
+                             : (void*)((uint)a.Value / (uint)b);
                 return result;
             }
 
@@ -278,8 +278,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a / (uint)b) 
-                             : (void*)((uint)a / (uint)b);
+                             ? (void*)((ulong)a.Value / (uint)b) 
+                             : (void*)((uint)a.Value / (uint)b);
                 return result;
             }
 
@@ -290,8 +290,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a / b) 
-                             : (void*)((uint)a / b);
+                             ? (void*)((ulong)a.Value / b) 
+                             : (void*)((uint)a.Value / b);
                 return result;
             }
 
@@ -302,8 +302,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a / (ulong)b) 
-                             : (void*)((uint)a / (uint)b);
+                             ? (void*)((ulong)a.Value / (ulong)b) 
+                             : (void*)((uint)a.Value / (uint)b);
                 return result;
             }
 
@@ -314,8 +314,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a / b) 
-                             : (void*)((uint)a / (uint)b);
+                             ? (void*)((ulong)a.Value / b) 
+                             : (void*)((uint)a.Value / (uint)b);
                 return result;
             }
 
@@ -326,8 +326,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a * (ulong)b) 
-                             : (void*)((uint)a * (uint)b);
+                             ? (void*)((ulong)a.Value * (ulong)b.Value) 
+                             : (void*)((uint)a.Value * (uint)b.Value);
                 return result;
             }
 
@@ -338,8 +338,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a * (ulong)b) 
-                             : (void*)((uint)a * (uint)b);
+                             ? (void*)((ulong)a.Value * (ulong)b) 
+                             : (void*)((uint)a.Value * (uint)b);
                 return result;
             }
 
@@ -350,8 +350,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a * b) 
-                             : (void*)((uint)a * b);
+                             ? (void*)((ulong)a.Value * b) 
+                             : (void*)((uint)a.Value * b);
                 return result;
             }
 
@@ -362,8 +362,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a * (ulong)b) 
-                             : (void*)((uint)a * (uint)b);
+                             ? (void*)((ulong)a.Value * (ulong)b) 
+                             : (void*)((uint)a.Value * (uint)b);
                 return result;
             }
 
@@ -374,8 +374,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a * b) 
-                             : (void*)((uint)a * (uint)b);
+                             ? (void*)((ulong)a.Value * b) 
+                             : (void*)((uint)a.Value * (uint)b);
                 return result;
             }
 
@@ -386,8 +386,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a % (ulong)b) 
-                             : (void*)((uint)a % (uint)b);
+                             ? (void*)((ulong)a.Value % (ulong)b.Value) 
+                             : (void*)((uint)a.Value % (uint)b.Value);
                 return result;
             }
 
@@ -398,8 +398,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a % (ulong)b) 
-                             : (void*)((uint)a % (uint)b);
+                             ? (void*)((ulong)a.Value % (ulong)b) 
+                             : (void*)((uint)a.Value % (uint)b);
                 return result;
             }
 
@@ -411,8 +411,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a % b) 
-                             : (void*)((uint)a % b);
+                             ? (void*)((ulong)a.Value % b) 
+                             : (void*)((uint)a.Value % b);
                 return result;
             }
 
@@ -423,8 +423,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a % (ulong)b) 
-                             : (void*)((uint)a % (uint)b);
+                             ? (void*)((ulong)a.Value % (ulong)b) 
+                             : (void*)((uint)a.Value % (uint)b);
                 return result;
             }
 
@@ -435,8 +435,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit)
-                             ? (void*)((ulong)a % b) 
-                             : (void*)((uint)a % (uint)b);
+                             ? (void*)((ulong)a.Value % b) 
+                             : (void*)((uint)a.Value % (uint)b);
                 return result;
             }
 
@@ -447,22 +447,22 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a & (ulong)b) 
-                             : (void*)((uint)a & (uint)b);
+                             ? (void*)((ulong)a.Value & (ulong)b) 
+                             : (void*)((uint)a.Value & (uint)b);
                 return result;
             }
 
             public static size_t operator &(size_t a, int b)
             {
                 size_t result;
-                result.Value = (void*)((uint)a & (uint)b);
+                result.Value = (void*)((uint)a.Value & (uint)b);
                 return result;
             }
 
             public static size_t operator &(size_t a, uint b)
             {
                 size_t result;
-                result.Value = (void*)((uint)a & b);
+                result.Value = (void*)((uint)a.Value & b);
                 return result;
             }
 
@@ -473,8 +473,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a & (uint)b) 
-                             : (void*)((uint)a & (uint)b);
+                             ? (void*)((ulong)a.Value & (uint)b) 
+                             : (void*)((uint)a.Value & (uint)b);
                 return result;
             }
 
@@ -485,8 +485,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a & b) 
-                             : (void*)((uint)a & b);
+                             ? (void*)((ulong)a.Value & b) 
+                             : (void*)((uint)a.Value & b);
                 return result;
             }
 
@@ -497,8 +497,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a | (ulong)b) 
-                             : (void*)((uint)a | (uint)b);
+                             ? (void*)((ulong)a.Value | (ulong)b.Value) 
+                             : (void*)((uint)a.Value | (uint)b.Value);
                 return result;
             }
 
@@ -509,8 +509,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a | (uint)b) 
-                             : (void*)((uint)a | (uint)b);
+                             ? (void*)((ulong)a.Value | (uint)b) 
+                             : (void*)((uint)a.Value | (uint)b);
                 return result;
             }
 
@@ -533,8 +533,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a | (uint)b) 
-                             : (void*)((uint)a | (uint)b);
+                             ? (void*)((ulong)a.Value | (uint)b) 
+                             : (void*)((uint)a.Value | (uint)b);
                 return result;
             }
 
@@ -545,8 +545,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a | b) 
-                             : (void*)((uint)a | b);
+                             ? (void*)((ulong)a.Value | b) 
+                             : (void*)((uint)a.Value | b);
                 return result;
             }
 
@@ -557,8 +557,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)((ulong)a >> b) 
-                             : (void*)((uint)a >> b);
+                             ? (void*)((ulong)a.Value >> b) 
+                             : (void*)((uint)a.Value >> b);
                 return result;
             }
 
@@ -569,8 +569,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit)
-                             ? (void*)((ulong)a << b) 
-                             : (void*)((uint)a << b);
+                             ? (void*)((ulong)a.Value << b) 
+                             : (void*)((uint)a.Value << b);
                 return result;
             }
 
@@ -581,8 +581,8 @@ namespace BrotliSharpLib
             {
                 size_t result;
                 result.Value = (Is64Bit) 
-                             ? (void*)(~(ulong)a) 
-                             : (void*)(~(uint)a);
+                             ? (void*)(~(ulong)a.Value) 
+                             : (void*)(~(uint)a.Value);
                 return result;
             }
 
