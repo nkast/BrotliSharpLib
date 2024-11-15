@@ -10,7 +10,7 @@ namespace BrotliSharpLib
         [DebuggerDisplay("{Value}")]
         internal unsafe struct SizeT
         {
-            private void* Value;
+            internal void* Value;
 
             public SizeT(void* v)
             {

@@ -188,10 +188,10 @@ namespace BrotliSharpLib
                 {
                     if (br->bit_pos_ >= 56)
                     {
-                        br->val_ >>= 56;
+                        br->val_.Value = (void*)((ulong)br->val_.Value >> 56);
                         br->bit_pos_ ^= 56; /* here same as -= 56 because of the if condition */
-                        br->val_ |= BrotliLoad64LE(br->next_in) << 8;
-                        br->avail_in -= 7;
+                        br->val_.Value = (void*)((ulong)br->val_.Value | BrotliLoad64LE(br->next_in) << 8);
+                        br->avail_in.Value = (void*)((byte*)br->avail_in.Value - 7);
                         br->next_in += 7;
                     }
                 }
@@ -199,10 +199,10 @@ namespace BrotliSharpLib
                 {
                     if (br->bit_pos_ >= 48)
                     {
-                        br->val_ >>= 48;
+                        br->val_.Value = (void*)((ulong)br->val_.Value >> 48);
                         br->bit_pos_ ^= 48; /* here same as -= 48 because of the if condition */
-                        br->val_ |= BrotliLoad64LE(br->next_in) << 16;
-                        br->avail_in -= 6;
+                        br->val_.Value = (void*)((ulong)br->val_.Value | BrotliLoad64LE(br->next_in) << 16);
+                        br->avail_in.Value = (void*)((byte*)br->avail_in.Value - 6);
                         br->next_in += 6;
                     }
                 }
@@ -210,10 +210,10 @@ namespace BrotliSharpLib
                 {
                     if (br->bit_pos_ >= 32)
                     {
-                        br->val_ >>= 32;
+                        br->val_.Value = (void*)((ulong)br->val_.Value >> 32);
                         br->bit_pos_ ^= 32; /* here same as -= 32 because of the if condition */
-                        br->val_ |= ((ulong)BrotliLoad32LE(br->next_in)) << 32;
-                        br->avail_in -= BROTLI_SHORT_FILL_BIT_WINDOW_READ;
+                        br->val_.Value = (void*)((ulong)br->val_.Value | ((ulong)BrotliLoad32LE(br->next_in)) << 32);
+                        br->avail_in.Value = (void*)((byte*)br->avail_in.Value - BROTLI_SHORT_FILL_BIT_WINDOW_READ);
                         br->next_in += BROTLI_SHORT_FILL_BIT_WINDOW_READ;
                     }
                 }
@@ -224,10 +224,10 @@ namespace BrotliSharpLib
                 {
                     if (br->bit_pos_ >= 24)
                     {
-                        br->val_ >>= 24;
+                        br->val_.Value = (void*)((uint)br->val_.Value >> 24);
                         br->bit_pos_ ^= 24; /* here same as -= 24 because of the if condition */
-                        br->val_ |= BrotliLoad32LE(br->next_in) << 8;
-                        br->avail_in -= 3;
+                        br->val_.Value = (void*)((uint)br->val_.Value | BrotliLoad32LE(br->next_in) << 8);
+                        br->avail_in.Value = (void*)((byte*)br->avail_in.Value - 3);
                         br->next_in += 3;
                     }
                 }
@@ -235,10 +235,10 @@ namespace BrotliSharpLib
                 {
                     if (br->bit_pos_ >= 16)
                     {
-                        br->val_ >>= 16;
+                        br->val_.Value = (void*)((uint)br->val_.Value >> 16);
                         br->bit_pos_ ^= 16; /* here same as -= 16 because of the if condition */
-                        br->val_ |= ((uint)BrotliLoad16LE(br->next_in)) << 16;
-                        br->avail_in -= BROTLI_SHORT_FILL_BIT_WINDOW_READ;
+                        br->val_.Value = (void*)((uint)br->val_.Value | ((uint)BrotliLoad16LE(br->next_in)) << 16);
+                        br->avail_in.Value = (void*)((byte*)br->avail_in.Value - BROTLI_SHORT_FILL_BIT_WINDOW_READ);
                         br->next_in += BROTLI_SHORT_FILL_BIT_WINDOW_READ;
                     }
                 }
