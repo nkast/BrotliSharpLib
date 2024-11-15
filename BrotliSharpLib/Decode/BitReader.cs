@@ -284,7 +284,7 @@ namespace BrotliSharpLib
 #endif
         private static unsafe reg_t BrotliGetBitsUnmasked(BrotliBitReader* br)
         {
-            return br->val_ >> (int)br->bit_pos_;
+            return (reg_t)(br->val_ >> (int)br->bit_pos_);
         }
 
         /* Like BrotliGetBits, but does not mask the result.
@@ -373,22 +373,42 @@ namespace BrotliSharpLib
         private static unsafe uint BrotliReadBits(
             BrotliBitReader* br, uint n_bits)
         {
-            if (Is64Bit || (n_bits <= 16))
+            if (Is64Bit)
             {
                 uint val;
                 BrotliFillBitWindow(br, n_bits);
-                BrotliTakeBits(br, n_bits, &val);
+                val = (uint)(void*)((ulong)br->val_.Value >> (int)br->bit_pos_);
+                val = val & BitMask(n_bits);
+                BrotliDropBits(br, n_bits);
                 return val;
             }
             else
             {
-                uint low_val;
-                uint high_val;
-                BrotliFillBitWindow(br, 16);
-                BrotliTakeBits(br, 16, &low_val);
-                BrotliFillBitWindow(br, 8);
-                BrotliTakeBits(br, n_bits - 16, &high_val);
-                return low_val | (high_val << 16);
+                if (n_bits <= 16)
+                {
+                    uint val;
+                    BrotliFillBitWindow(br, n_bits);
+                    val = (uint)br->val_.Value >> (int)br->bit_pos_;
+                    val = val & BitMask(n_bits);
+                    BrotliDropBits(br, n_bits);
+                    return val;
+                }
+                else
+                {
+                    uint low_val;
+                    BrotliFillBitWindow(br, 16);
+                    low_val = (uint)br->val_.Value >> (int)br->bit_pos_;
+                    low_val = low_val & BitMask(16);
+                    BrotliDropBits(br, 16);
+
+                    uint high_val;
+                    BrotliFillBitWindow(br, 8);
+                    high_val = (uint)br->val_.Value >> (int)br->bit_pos_;
+                    high_val = high_val & BitMask(n_bits - 16);
+                    BrotliDropBits(br, n_bits - 16);
+
+                    return low_val | (high_val << 16);
+                }
             }
         }
 
