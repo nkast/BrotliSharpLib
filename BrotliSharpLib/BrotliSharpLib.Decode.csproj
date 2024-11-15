@@ -24,7 +24,7 @@
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>StrongNameKey.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>false</DelaySign>
-		<DefineConstants>$(DefineConstants);ENABLE_ENCODE</DefineConstants>
+		<DefineConstants>$(DefineConstants);</DefineConstants>
 		<PackageId>BrotliSharpLib</PackageId>
 	</PropertyGroup>
 	
@@ -46,7 +46,6 @@
 	
 	<ItemGroup>
 	  <Compile Include="Brotli.Decode.cs" />
-	  <Compile Include="Brotli.Encode.cs" />
 	  <Compile Include="BrotliStream.cs" />
 	  <Compile Include="BufferPool.cs" />
 	  <Compile Include="Constants.cs" />
@@ -59,49 +58,6 @@
 	  <Compile Include="Decode\Tables.cs" />
 	  <Compile Include="Decode\Transform.cs" />
 	  <Compile Include="Detect.cs" />
-	  <Compile Include="Encode\BackwardReferences.cs" />
-	  <Compile Include="Encode\BackwardReferencesHQ.cs" />
-	  <Compile Include="Encode\BitCost.cs" />
-	  <Compile Include="Encode\BitCosts.cs" />
-	  <Compile Include="Encode\BitStream.cs" />
-	  <Compile Include="Encode\BlockEncoders.cs" />
-	  <Compile Include="Encode\BlockSplitter.cs" />
-	  <Compile Include="Encode\BlockSplitters.cs" />
-	  <Compile Include="Encode\Cluster.cs" />
-	  <Compile Include="Encode\Clusters.cs" />
-	  <Compile Include="Encode\Command.cs" />
-	  <Compile Include="Encode\CompressFragment.cs" />
-	  <Compile Include="Encode\CompressFragmentTwoPass.cs" />
-	  <Compile Include="Encode\Constants.cs" />
-	  <Compile Include="Encode\Context.cs" />
-	  <Compile Include="Encode\DictionaryHash.cs" />
-	  <Compile Include="Encode\Encode.cs" />
-	  <Compile Include="Encode\EntropyEncode.cs" />
-	  <Compile Include="Encode\EntropyEncodeStatic.cs" />
-	  <Compile Include="Encode\FastLog.cs" />
-	  <Compile Include="Encode\FindMatchLength.cs" />
-	  <Compile Include="Encode\Hash.cs" />
-	  <Compile Include="Encode\Hash\Hasher.cs" />
-	  <Compile Include="Encode\Hash\HashForgetfulChain.cs" />
-	  <Compile Include="Encode\Hash\HashLongestMatch.cs" />
-	  <Compile Include="Encode\Hash\HashLongestMatch64.cs" />
-	  <Compile Include="Encode\Hash\HashLongestMatchQuickly.cs" />
-	  <Compile Include="Encode\Hash\HashToBinaryTree.cs" />
-	  <Compile Include="Encode\Helpers.cs" />
-	  <Compile Include="Encode\Histogram.cs" />
-	  <Compile Include="Encode\LiteralCost.cs" />
-	  <Compile Include="Encode\Memory.cs" />
-	  <Compile Include="Encode\Metablock.cs" />
-	  <Compile Include="Encode\Metablocks.cs" />
-	  <Compile Include="Encode\Prefix.cs" />
-	  <Compile Include="Encode\Quality.cs" />
-	  <Compile Include="Encode\RingBuffer.cs" />
-	  <Compile Include="Encode\StaticDict.cs" />
-	  <Compile Include="Encode\StaticDictionaryLut.cs" />
-	  <Compile Include="Encode\Structures.cs" />
-	  <Compile Include="Encode\Tables.cs" />
-	  <Compile Include="Encode\UTF8Util.cs" />
-	  <Compile Include="Encode\WriteBits.cs" />
 	  <Compile Include="Helpers.cs" />
 	  <Compile Include="Helpers.SizeT.cs" />
 	  <Compile Include="Structures.cs" />

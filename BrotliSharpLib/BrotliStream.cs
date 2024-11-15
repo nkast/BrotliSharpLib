@@ -16,7 +16,9 @@ namespace BrotliSharpLib
         private bool _leaveOpen, _disposed;
         private IntPtr _customDictionary = IntPtr.Zero;
 
+#if ENABLE_ENCODE
         private Brotli.BrotliEncoderStateStruct _encoderState;
+#endif
 
         private Brotli.BrotliDecoderStateStruct _decoderState;
         private const int BufferLength = 0xfff0;
@@ -57,11 +59,13 @@ namespace BrotliSharpLib
 
                 case CompressionMode.Compress:
                     {
+#if ENABLE_ENCODE
                         if (!_stream.CanWrite)
                             throw new ArgumentException("Stream does not support write", nameof(stream));
 
                         _encoderState = Brotli.BrotliEncoderCreateInstance(null, null, null);
                         SetQuality(1);
+#endif
                     }
                     break;
 
@@ -105,6 +109,7 @@ namespace BrotliSharpLib
 
                 case CompressionMode.Compress:
                     {
+#if ENABLE_ENCODE
                         if (quality < Brotli.BROTLI_MIN_QUALITY || quality > Brotli.BROTLI_MAX_QUALITY)
                             throw new ArgumentOutOfRangeException(nameof(quality), "Quality should be a value between " +
                                                                                    Brotli.BROTLI_MIN_QUALITY + "-" + Brotli
@@ -114,6 +119,7 @@ namespace BrotliSharpLib
 
                         Brotli.BrotliEncoderSetParameter(ref _encoderState, Brotli.BrotliEncoderParameter.BROTLI_PARAM_QUALITY,
                             (uint)quality);
+#endif
                     }
                     break;
             }
@@ -147,8 +153,10 @@ namespace BrotliSharpLib
 
                 case CompressionMode.Compress:
                     {
+#if ENABLE_ENCODE
                         Brotli.BrotliEncoderSetCustomDictionary(ref _encoderState, dictionary.Length,
                             (byte*)_customDictionary);
+#endif
                     }
                     break;
             }
@@ -170,6 +178,7 @@ namespace BrotliSharpLib
 
                 case CompressionMode.Compress:
                     {
+#if ENABLE_ENCODE
                         if (windowSize < Brotli.BROTLI_MIN_WINDOW_BITS || windowSize > Brotli.BROTLI_MAX_WINDOW_BITS)
                             throw new ArgumentOutOfRangeException(nameof(windowSize), "Window size should be a value between " +
                                                                                       Brotli.BROTLI_MIN_WINDOW_BITS + "-" + Brotli
@@ -179,6 +188,7 @@ namespace BrotliSharpLib
 
                         Brotli.BrotliEncoderSetParameter(ref _encoderState, Brotli.BrotliEncoderParameter.BROTLI_PARAM_LGWIN,
                             (uint)windowSize);
+#endif
                     }
                     break;
             }
@@ -206,7 +216,9 @@ namespace BrotliSharpLib
 
                     case CompressionMode.Compress:
                         {
+#if ENABLE_ENCODE
                             Brotli.BrotliEncoderDestroyInstance(ref _encoderState);
+#endif
                         }
                         break;
                 }
@@ -249,6 +261,7 @@ namespace BrotliSharpLib
 
                 case CompressionMode.Compress:
                     {
+#if ENABLE_ENCODE
                         if (Brotli.BrotliEncoderIsFinished(ref _encoderState))
                             return;
 
@@ -258,6 +271,7 @@ namespace BrotliSharpLib
 
                         byte[] buffer = new byte[0];
                         WriteCore(buffer, 0, 0, op);
+#endif
                     }
                     break;
             }
@@ -382,6 +396,8 @@ namespace BrotliSharpLib
             }
         }
 
+
+#if ENABLE_ENCODE
         private void WriteCore(byte[] buffer, int offset, int count, Brotli.BrotliEncoderOperation operation)
         {
             System.Diagnostics.Debug.Assert(_mode == CompressionMode.Compress);
@@ -423,6 +439,7 @@ namespace BrotliSharpLib
                 }
             }
         }
+#endif
 
         /// <summary>
         /// Writes compressed bytes to the underlying stream from the specified byte array.
@@ -442,9 +459,11 @@ namespace BrotliSharpLib
 
                 case CompressionMode.Compress:
                     {
+#if ENABLE_ENCODE
                         EnsureNotDisposed();
                         ValidateParameters(buffer, offset, count);
                         WriteCore(buffer, offset, count, Brotli.BrotliEncoderOperation.BROTLI_OPERATION_PROCESS);
+#endif
                     }
                     break;
             }
