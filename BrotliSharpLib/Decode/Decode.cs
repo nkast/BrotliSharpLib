@@ -1520,7 +1520,10 @@ namespace BrotliSharpLib
         private static unsafe uint ReadSymbol(HuffmanCode* table,
             BrotliBitReader* br)
         {
-            return DecodeSymbol(BrotliGet16BitsUnmasked(br), table, br);
+            BrotliFillBitWindow(br, 16);
+            uint bits = (uint)(br->val_ >> (int)br->bit_pos_);
+
+            return DecodeSymbol(bits, table, br);
         }
 
 #if AGGRESSIVE_INLINING
