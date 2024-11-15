@@ -1070,11 +1070,11 @@ namespace BrotliSharpLib
             if (table->bits > HUFFMAN_TABLE_BITS)
             {
                 var nbits = (uint)(table->bits - HUFFMAN_TABLE_BITS);
-                BrotliDropBits(br, HUFFMAN_TABLE_BITS);
+                br->bit_pos_ += HUFFMAN_TABLE_BITS;
                 table += table->value;
                 table += (bits >> HUFFMAN_TABLE_BITS) & BitMask(nbits);
             }
-            BrotliDropBits(br, table->bits);
+            br->bit_pos_ += table->bits;
             return table->value;
         }
 
