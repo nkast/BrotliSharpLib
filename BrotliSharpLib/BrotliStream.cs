@@ -15,11 +15,13 @@ namespace BrotliSharpLib
         private CompressionMode _mode;
         private bool _leaveOpen, _disposed;
         private IntPtr _customDictionary = IntPtr.Zero;
-        private byte[] _buffer;
-        private int _bufferCount, _bufferOffset;
 
         private Brotli.BrotliEncoderStateStruct _encoderState;
+
         private Brotli.BrotliDecoderStateStruct _decoderState;
+        private const int BufferLength = 0xfff0;
+        private byte[] _buffer;
+        private int _bufferCount, _bufferOffset;
 
         private Brotli.BrotliDecoderResult _lastDecoderState =
             Brotli.BrotliDecoderResult.BROTLI_DECODER_RESULT_NEEDS_MORE_INPUT;
@@ -49,7 +51,7 @@ namespace BrotliSharpLib
 
                         _decoderState = Brotli.BrotliCreateDecoderState();
                         Brotli.BrotliDecoderStateInit(ref _decoderState);
-                        _buffer = new byte[0xfff0];
+                        _buffer = new byte[BufferLength];
                     }
                     break;
 
@@ -318,10 +320,10 @@ namespace BrotliSharpLib
                                 _bufferOffset = 0;
 
                                 int numRead = 0;
-                                while (_bufferCount < _buffer.Length && ((numRead = _stream.Read(_buffer, _bufferCount, _buffer.Length - _bufferCount)) > 0))
+                                while (_bufferCount < BufferLength && ((numRead = _stream.Read(_buffer, _bufferCount, BufferLength - _bufferCount)) > 0))
                                 {
                                     _bufferCount += numRead;
-                                    if (_bufferCount > _buffer.Length)
+                                    if (_bufferCount > BufferLength)
                                         throw new InvalidDataException("Invalid input stream detected, more bytes supplied than expected.");
                                 }
 
