@@ -1521,7 +1521,9 @@ namespace BrotliSharpLib
             BrotliBitReader* br)
         {
             BrotliFillBitWindow(br, 16);
-            uint bits = (uint)(br->val_ >> (int)br->bit_pos_);
+            uint bits = (Is64Bit)
+                    ? (uint)((ulong)br->val_.Value >> (int)br->bit_pos_)
+                    : (uint)((uint)br->val_.Value >> (int)br->bit_pos_);
 
             return DecodeSymbol(bits, table, br);
         }
